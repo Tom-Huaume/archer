@@ -11,7 +11,16 @@ class MainController extends \Symfony\Bundle\FrameworkBundle\Controller\Abstract
      */
     public function home()
     {
-        echo "coucou";
-        die();
+        return $this->render('main/home.html.twig');
     }
+
+    /**
+     * @Route("/test", name="main_test")
+     */
+    public function test()
+    {
+        return $this->render('main/test.html.twig');
+    }
+
+
 }
