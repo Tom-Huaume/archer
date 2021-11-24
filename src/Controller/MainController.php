@@ -11,7 +11,14 @@ class MainController extends \Symfony\Bundle\FrameworkBundle\Controller\Abstract
      */
     public function home()
     {
-        return $this->render('main/home.html.twig');
+        $eventTest1 = [
+            "nom" => "Menhir cup",
+            "concours" => 0,
+        ];
+
+        return $this->render('main/home.html.twig', [
+            "ev1" => $eventTest1
+        ]);
     }
 
 
