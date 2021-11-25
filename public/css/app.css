@@ -1,3 +1,14 @@
 h1 {
     text-align: center;
 }
+
+/*____Tableau listing armes____*/
+.my-custom-scrollbar-arme {
+    position:relative;
+    width: 300px;
+    height: 200px;
+    overflow: auto;
+}
+.table-wrapper-scroll-y-arme {
+    display: block;
+}

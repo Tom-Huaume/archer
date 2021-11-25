@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Admin | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <h1>Général</h1>
+
+    <h4>Adresse du club</h4>
+
+    <h4>Adresses sauvegardées</h4>
+    <p>todo: bouton définir comme adresse du club</p>
+
+    <h4>Types d'arme </h4>
+    <div  class="table-wrapper-scroll-y-arme my-custom-scrollbar-arme">
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+            <tr>
+                <th scope="col">Sigle</th>
+                <th scope="col">Désignation</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <div>
+                <tbody>
+                {% for a in armes %}
+                    <tr>
+                        <td>{{ a.sigle }}</td>
+                        <td>{{ a.designation}}</td>
+                        <td>
+                            <a class="btn btn-sm btn-danger" href="{{ path('arme_delete', {'id': a.id}) }}">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                    <tr>
+                        <td>
+                            <input type="text" id="sigle" name="arme_sigle" size="2">
+                        </td>
+                        <td>
+                            <input type="text" id="name" name="arme_name" size="10">
+                        </td>
+                        <td>
+                            <a class="btn  btn-sm btn-secondary" href="#">Créer</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </div>
+        </table>
+    </div>
+
+
+
+{% endblock %}

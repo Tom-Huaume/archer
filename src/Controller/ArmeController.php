@@ -25,13 +25,23 @@ class ArmeController extends AbstractController
         $arme = new Arme();
 
         //remplir les propriétés
-        $arme->setSigle("AC");
-        $arme->setDesignation("Arc classique");
+        //$arme->setSigle("AC");
+        //$arme->setDesignation("Arc classique");
 
-        $entityManager->persist($arme);
+        //$entityManager->persist($arme);
         //$entityManager->remove($arme);
-        $entityManager->flush();
+        //$entityManager->flush();
 
         return $this->render('arme/create.html.twig');
+    }
+
+    #[Route('/arme/delete/{id}', name: 'arme_delete')]
+    public function delete(Arme $arme, EntityManagerInterface $entityManager): Response
+    {
+        //Supprime l'arme
+        $entityManager->remove($arme);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_general');
     }
 }

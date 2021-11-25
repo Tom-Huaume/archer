@@ -19,6 +19,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{path('lieu_list')}}">Lieux</a>
                 </li>
+
+            </ul>
+            <ul class="navbar-nav d-flex">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Espace admin</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{path('admin_general')}}">Général</a>
+                    <a class="dropdown-item" href="#">Affectation des droits</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+            </li>
             </ul>
             <form class="d-flex">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Login</button>
