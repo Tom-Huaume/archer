@@ -9,9 +9,11 @@
     <h1>Général</h1>
 
     <h4>Adresse du club</h4>
-
-    <h4>Adresses sauvegardées</h4>
-    <p>todo: bouton définir comme adresse du club</p>
+    <p>{{ adresseClub.nom }}</p>
+    <p>{{ adresseClub.rue }}</p>
+    <p>{{ adresseClub.rue2 }}</p>
+    <p>{{ adresseClub.codePostal }} {{ adresseClub.ville | upper }}</p>
+    <br>
 
     <h4>Types d'arme </h4>
     <div  class="table-wrapper-scroll-y-arme my-custom-scrollbar-arme">

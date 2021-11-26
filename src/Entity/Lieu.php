@@ -52,6 +52,11 @@ class Lieu
      */
     private $longitude;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $club;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +142,18 @@ class Lieu
     public function setLongitude(?float $longitude): self
     {
         $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    public function getClub(): ?bool
+    {
+        return $this->club;
+    }
+
+    public function setClub(bool $club): self
+    {
+        $this->club = $club;
 
         return $this;
     }

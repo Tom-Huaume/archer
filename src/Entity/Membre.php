@@ -67,6 +67,11 @@ class Membre
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=3, nullable=true)
+     */
+    private $civilite;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -188,6 +193,18 @@ class Membre
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getCivilite(): ?string
+    {
+        return $this->civilite;
+    }
+
+    public function setCivilite(?string $civilite): self
+    {
+        $this->civilite = $civilite;
 
         return $this;
     }
