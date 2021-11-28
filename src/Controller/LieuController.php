@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Lieu;
+use App\Form\LieuType;
+use App\Repository\LieuRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,9 +27,18 @@ class LieuController extends AbstractController
     }
 
     #[Route('/lieux/create', name: 'lieu_create')]
-    public function create(): Response
+    public function create(
+        LieuRepository $lieuRepository
+    ): Response
     {
-        return $this->render('lieu/create.html.twig');
+//        todo: liste des lieux !!!!!
+
+        $lieu = new Lieu();
+        $lieuForm = $this->createForm(LieuType::class, $lieu);
+
+        return $this->render('lieu/create.html.twig', [
+            'lieuForm' => $lieuForm->createView()
+        ]);
     }
 
     #[Route('/lieux/update/{id}', name: 'lieu_update')]

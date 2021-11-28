@@ -5,6 +5,47 @@
 {% endblock %}
 
 {% block body %}
-{#    todo: afficher formulaire de création #}
+
+
+    {{ form_start(lieuForm) }}
+
+    <fieldset>
+        <legend>Lieux enregistrés</legend>
+        <div class="form-group">
+            <label for="exampleInputEmail1" class="form-label mt-4">{{ form_label(lieuForm.nom) }}</label>
+            {{ form_widget(lieuForm.nom) }}
+            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.nom) }}</small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1" class="form-label mt-4">{{ form_label(lieuForm.rue) }}</label>
+            {{ form_widget(lieuForm.rue) }}
+            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.rue) }}</small>
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form_widget(lieuForm.rue2) }}
+            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.rue2) }}</small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1" class="form-label mt-4">{{ form_label(lieuForm.codePostal) }}</label>
+            {{ form_widget(lieuForm.codePostal) }}
+            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.codePostal) }}</small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1" class="form-label mt-4">{{ form_label(lieuForm.ville) }}</label>
+            {{ form_widget(lieuForm.ville) }}
+            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.ville) }}</small>
+        </div>
+
+        <br>
+    </fieldset>
+
+    <button class="btn btn-primary">Créer</button>
+
+    {{ form_end(lieuForm) }}
+
 {% endblock %}
 

@@ -1,7 +1,13 @@
+/*_________BALISES_________*/
 h1 {
     text-align: center;
 }
 
+legend {
+    margin-top: 2rem;
+}
+
+/*_________CLASSES_________*/
 /*____Tableau listing armes____*/
 .my-custom-scrollbar-arme {
     position:relative;
@@ -11,4 +17,21 @@ h1 {
 }
 .table-wrapper-scroll-y-arme {
     display: block;
+}
+
+/*____Formulaire lieux____*/
+.input-nom-lieu {
+    max-width: 25rem;
+}
+
+.input-rue-lieu {
+    max-width: 30rem;
+}
+
+.input-cp-lieu {
+    max-width: 5rem;
+}
+
+.input-ville-lieu {
+    max-width: 25rem;
 }
