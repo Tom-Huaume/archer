@@ -18,7 +18,7 @@ class LieuType extends AbstractType
                 'label' => 'Nom du lieu',
                 'attr'=>[
                     'class'=>'form-control input-nom-lieu',
-                    'placeholder'=>'Club des archers de Janzé'
+                    'placeholder'=>'ex : Club des archers de Janzé'
                 ]
             ])
 

@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\LieuRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=LieuRepository::class)
@@ -23,6 +26,8 @@ class Lieu
     private $nom;
 
     /**
+     * @Assert\NotBlank(message="Vous devez saisir un nom de rue.")
+     * @Assert\Length(max={50})
      * @ORM\Column(type="string", length=50)
      */
     private $rue;
@@ -56,6 +61,16 @@ class Lieu
      * @ORM\Column(type="boolean")
      */
     private $club;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Trajet::class, mappedBy="lieuDepart")
+     */
+    private $trajets;
+
+    public function __construct()
+    {
+        $this->trajets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +169,36 @@ class Lieu
     public function setClub(bool $club): self
     {
         $this->club = $club;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Trajet[]
+     */
+    public function getTrajets(): Collection
+    {
+        return $this->trajets;
+    }
+
+    public function addTrajet(Trajet $trajet): self
+    {
+        if (!$this->trajets->contains($trajet)) {
+            $this->trajets[] = $trajet;
+            $trajet->setLieuDepart($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrajet(Trajet $trajet): self
+    {
+        if ($this->trajets->removeElement($trajet)) {
+            // set the owning side to null (unless already changed)
+            if ($trajet->getLieuDepart() === $this) {
+                $trajet->setLieuDepart(null);
+            }
+        }
 
         return $this;
     }

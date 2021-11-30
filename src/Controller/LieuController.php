@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Lieu;
 use App\Form\LieuType;
 use App\Repository\LieuRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -28,13 +30,27 @@ class LieuController extends AbstractController
 
     #[Route('/lieux/create', name: 'lieu_create')]
     public function create(
-        LieuRepository $lieuRepository
+        Request $request,
+        LieuRepository $lieuRepository,
+        EntityManagerInterface $entityManager
     ): Response
     {
 //        todo: liste des lieux !!!!!
 
         $lieu = new Lieu();
         $lieuForm = $this->createForm(LieuType::class, $lieu);
+
+        $lieuForm->handleRequest($request);
+
+        if($lieuForm->isSubmitted() && $lieuForm->isValid()){
+
+            $lieu->setClub(0);
+            $entityManager->persist($lieu);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Lieu engristré');
+            //return $this->redirectToRoute()
+        }
 
         return $this->render('lieu/create.html.twig', [
             'lieuForm' => $lieuForm->createView()

@@ -38,6 +38,7 @@
             <label for="exampleInputEmail1" class="form-label mt-4">{{ form_label(lieuForm.ville) }}</label>
             {{ form_widget(lieuForm.ville) }}
             <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.ville) }}</small>
+
         </div>
 
         <br>
@@ -46,6 +47,6 @@
     <button class="btn btn-primary">Créer</button>
 
     {{ form_end(lieuForm) }}
-
+    <button class="btn btn-secondary">Retour</button>
 {% endblock %}
 

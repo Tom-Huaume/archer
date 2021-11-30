@@ -26,10 +26,20 @@
         <h1>Les archers de Liffré</h1>
         {% include('inc/nav.html.twig') %}
     </header>
+
     <div class="container">
         <main>
             {% block body %}{% endblock %}
         </main>
+
+        {# Message flash #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
 
         <footer>
             <br>

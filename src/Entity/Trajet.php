@@ -52,6 +52,12 @@ class Trajet
      */
     private $dateHeureCreation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Lieu::class, inversedBy="trajets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $lieuDepart;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +143,18 @@ class Trajet
     public function setDateHeureCreation(\DateTimeInterface $dateHeureCreation): self
     {
         $this->dateHeureCreation = $dateHeureCreation;
+
+        return $this;
+    }
+
+    public function getLieuDepart(): ?Lieu
+    {
+        return $this->lieuDepart;
+    }
+
+    public function setLieuDepart(?Lieu $lieuDepart): self
+    {
+        $this->lieuDepart = $lieuDepart;
 
         return $this;
     }
