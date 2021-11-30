@@ -1,6 +1,20 @@
 /*_________BALISES_________*/
 h1 {
+    margin: 1rem;
     text-align: center;
+}
+
+h2 {
+    margin: 1rem;
+    text-align: center;
+}
+
+h3 {
+    margin: 1rem;
+}
+
+h4 {
+    margin: 1rem;
 }
 
 legend {
@@ -16,6 +30,17 @@ legend {
     overflow: auto;
 }
 .table-wrapper-scroll-y-arme {
+    display: block;
+}
+
+/*____Tableau listing lieux____*/
+.app-my-custom-scrollbar-lieu {
+    position:relative;
+    width: 1000px;
+    height: 400px;
+    overflow: auto;
+}
+.app-table-wrapper-scroll-y-arme {
     display: block;
 }
 

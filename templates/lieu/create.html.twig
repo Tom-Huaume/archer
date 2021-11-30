@@ -1,52 +1,82 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Lieu | {{ parent() }}
+    Lieux | {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-
     {{ form_start(lieuForm) }}
 
-    <fieldset>
-        <legend>Lieux enregistrés</legend>
-        <div class="form-group">
-            <label for="exampleInputEmail1" class="form-label mt-4">{{ form_label(lieuForm.nom) }}</label>
-            {{ form_widget(lieuForm.nom) }}
-            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.nom) }}</small>
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputEmail1" class="form-label mt-4">{{ form_label(lieuForm.rue) }}</label>
-            {{ form_widget(lieuForm.rue) }}
-            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.rue) }}</small>
-        </div>
-        <br>
-        <div class="form-group">
-            {{ form_widget(lieuForm.rue2) }}
-            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.rue2) }}</small>
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputEmail1" class="form-label mt-4">{{ form_label(lieuForm.codePostal) }}</label>
-            {{ form_widget(lieuForm.codePostal) }}
-            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.codePostal) }}</small>
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputEmail1" class="form-label mt-4">{{ form_label(lieuForm.ville) }}</label>
-            {{ form_widget(lieuForm.ville) }}
-            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.ville) }}</small>
-
-        </div>
-
-        <br>
-    </fieldset>
-
-    <button class="btn btn-primary">Créer</button>
+    <h4>Liste des lieux </h4>
+    <div  class="app-table-wrapper-scroll-y-arme app-my-custom-scrollbar-lieu">
+        <table class="table table-bordered table-striped mb-0">
+            <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Rue</th>
+                <th scope="col">Complément d'adresse</th>
+                <th scope="col">CP</th>
+                <th scope="col">Ville</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <div>
+                <tbody>
+                {% for l in listLieux %}
+                    <tr>
+                        <td>{{ l.nom }}</td>
+                        <td>{{ l.rue }}</td>
+                        <td>{{ l.rue2 }}</td>
+                        <td>{{ l.codePostal }}</td>
+                        <td>{{ l.ville }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-danger" href="#">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            {{ form_widget(lieuForm.nom) }}
+                            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.nom) }}</small>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            {{ form_widget(lieuForm.rue) }}
+                            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.rue) }}</small>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            {{ form_widget(lieuForm.rue2) }}
+                            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.rue2) }}</small>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            {{ form_widget(lieuForm.codePostal) }}
+                            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.codePostal) }}</small>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            {{ form_widget(lieuForm.ville) }}
+                            <small id="emailHelp" class="form-text text-muted">{{ form_errors(lieuForm.ville) }}</small>
+                        </div>
+                    </td>
+                    <td>
+                        <a class="btn  btn-sm btn-secondary" href="#">Créer</a>
+                    </td>
+                </tr>
+                </tbody>
+            </div>
+        </table>
+    </div>
 
     {{ form_end(lieuForm) }}
-    <button class="btn btn-secondary">Retour</button>
+
+    <button class="btn btn-primary">Retour</button>
 {% endblock %}
 

@@ -35,8 +35,10 @@ class LieuController extends AbstractController
         EntityManagerInterface $entityManager
     ): Response
     {
-//        todo: liste des lieux !!!!!
+        //afficher la liste des lieux
+        $lieux = $lieuRepository->findAll();
 
+        //générer le formulaire de création
         $lieu = new Lieu();
         $lieuForm = $this->createForm(LieuType::class, $lieu);
 
@@ -53,7 +55,8 @@ class LieuController extends AbstractController
         }
 
         return $this->render('lieu/create.html.twig', [
-            'lieuForm' => $lieuForm->createView()
+            'lieuForm' => $lieuForm->createView(),
+            'listLieux' => $lieux
         ]);
     }
 
