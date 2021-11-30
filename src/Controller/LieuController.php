@@ -13,22 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LieuController extends AbstractController
 {
-    #[Route('/lieux', name: 'lieu_list')]
-    public function list(): Response
-    {
-        //todo: Listing de tous les lieux enregistrés
-        return $this->render('lieu/list.html.twig', [
-            'controller_name' => 'LieuController',
-        ]);
-    }
-
-    #[Route('/lieux/details/{id}', name: 'lieu_details')]
-    public function details(int $id): Response
-    {
-        return $this->render('lieu/details.html.twig');
-    }
-
-    #[Route('/lieux/create', name: 'lieu_create')]
+    #[Route('/admin/lieux', name: 'lieu_create')]
     public function create(
         Request $request,
         LieuRepository $lieuRepository,
@@ -51,7 +36,7 @@ class LieuController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Lieu engristré');
-            //return $this->redirectToRoute()
+            return $this->redirectToRoute('lieu_create');
         }
 
         return $this->render('lieu/create.html.twig', [
@@ -60,15 +45,14 @@ class LieuController extends AbstractController
         ]);
     }
 
-    #[Route('/lieux/update/{id}', name: 'lieu_update')]
-    public function update(int $id): Response
+    #[Route('/lieu/admin/delete/{id}', name: 'lieu_delete')]
+    public function delete(Lieu $lieu, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('lieu/update.html.twig');
-    }
+        //Supprime l'arme
+        $entityManager->remove($lieu);
+        $entityManager->flush();
 
-    #[Route('/lieux/delete/{id}', name: 'lieu_delete')]
-    public function delete(int $id): Response
-    {
-        return $this->render('lieu/delete.html.twig');
+        $this->addFlash('danger', 'Lieu supprimé');
+        return $this->redirectToRoute('lieu_create');
     }
 }

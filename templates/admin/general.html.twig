@@ -23,7 +23,7 @@
             <p>{{ adresseClub.codePostal }} {{ adresseClub.ville | upper }}</p>
             <br>
 
-            <h4>Types d'arme </h4>
+            <h4>Liste types d'arme </h4>
             <div  class="table-wrapper-scroll-y-arme my-custom-scrollbar-arme">
                 <table class="table table-bordered table-striped mb-0">
                     <thead>
@@ -45,21 +45,23 @@
                             </tr>
                         {% endfor %}
                             <tr>
-                                <td>
-                                    <input type="text" id="sigle" name="arme_sigle" size="2">
-                                </td>
-                                <td>
-                                    <input type="text" id="name" name="arme_name" size="10">
-                                </td>
-                                <td>
-                                    <a class="btn  btn-sm btn-secondary" href="#">Créer</a>
-                                </td>
+                                {{ form_start(armeForm) }}
+                                    <td>
+                                        {{ form_widget(armeForm.sigle) }}
+                                    </td>
+                                    <td>
+                                        {{ form_widget(armeForm.designation) }}
+                                    </td>
+                                    <td>
+                                        <button class="btn  btn-sm btn-secondary">Créer</button>
+                                    </td>
+                                {{ form_end(armeForm) }}
                             </tr>
                         </tbody>
                     </div>
                 </table>
             </div>
-
+            <button class="btn btn-primary">Retour</button>
         </div>
 
         <div class="col">

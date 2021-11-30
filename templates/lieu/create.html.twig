@@ -8,8 +8,8 @@
 
     {{ form_start(lieuForm) }}
 
-    <h4>Liste des lieux </h4>
-    <div  class="app-table-wrapper-scroll-y-arme app-my-custom-scrollbar-lieu">
+    <h4>Lieux sauvegardés</h4>
+    <div  class="table-wrapper-scroll-y-lieu my-custom-scrollbar-lieu">
         <table class="table table-bordered table-striped mb-0">
             <thead>
             <tr>
@@ -31,7 +31,7 @@
                         <td>{{ l.codePostal }}</td>
                         <td>{{ l.ville }}</td>
                         <td>
-                            <a class="btn btn-sm btn-danger" href="#">Supprimer</a>
+                            <a class="btn btn-sm btn-danger" href="{{ path('lieu_delete', {'id' : l.id}) }}">Supprimer</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -67,7 +67,7 @@
                         </div>
                     </td>
                     <td>
-                        <a class="btn  btn-sm btn-secondary" href="#">Créer</a>
+                        <button class="btn  btn-sm btn-secondary">Créer</button>
                     </td>
                 </tr>
                 </tbody>

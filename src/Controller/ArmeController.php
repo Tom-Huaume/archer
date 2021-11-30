@@ -10,32 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArmeController extends AbstractController
 {
-    #[Route('/arme', name: 'arme')]
-    public function index(): Response
-    {
-        return $this->render('arme/index.html.twig', [
-            'controller_name' => 'ArmeController',
-        ]);
-    }
 
-    #[Route('/arme/create', name: 'arme_create')]
-    public function create(EntityManagerInterface $entityManager): Response
-    {
-        //créer instance entité
-        $arme = new Arme();
-
-        //remplir les propriétés
-        //$arme->setSigle("AC");
-        //$arme->setDesignation("Arc classique");
-
-        //$entityManager->persist($arme);
-        //$entityManager->remove($arme);
-        //$entityManager->flush();
-
-        return $this->render('arme/create.html.twig');
-    }
-
-    #[Route('/arme/delete/{id}', name: 'arme_delete')]
+    #[Route('/arme/admin/delete/{id}', name: 'arme_delete')]
     public function delete(Arme $arme, EntityManagerInterface $entityManager): Response
     {
         //Supprime l'arme

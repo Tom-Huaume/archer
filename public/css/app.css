@@ -34,13 +34,13 @@ legend {
 }
 
 /*____Tableau listing lieux____*/
-.app-my-custom-scrollbar-lieu {
+.my-custom-scrollbar-lieu {
     position:relative;
     width: 1000px;
     height: 400px;
     overflow: auto;
 }
-.app-table-wrapper-scroll-y-arme {
+.table-wrapper-scroll-y-lieu {
     display: block;
 }
 
@@ -72,4 +72,8 @@ legend {
 
 .flash-success{
     color: green;
+}
+
+.flash-danger{
+    color: red;
 }
