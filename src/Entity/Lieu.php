@@ -67,9 +67,15 @@ class Lieu
      */
     private $trajets;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="lieuDestination")
+     */
+    private $evenements;
+
     public function __construct()
     {
         $this->trajets = new ArrayCollection();
+        $this->evenements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -197,6 +203,36 @@ class Lieu
             // set the owning side to null (unless already changed)
             if ($trajet->getLieuDepart() === $this) {
                 $trajet->setLieuDepart(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Evenement[]
+     */
+    public function getEvenements(): Collection
+    {
+        return $this->evenements;
+    }
+
+    public function addEvenement(Evenement $evenement): self
+    {
+        if (!$this->evenements->contains($evenement)) {
+            $this->evenements[] = $evenement;
+            $evenement->setLieuDestination($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvenement(Evenement $evenement): self
+    {
+        if ($this->evenements->removeElement($evenement)) {
+            // set the owning side to null (unless already changed)
+            if ($evenement->getLieuDestination() === $this) {
+                $evenement->setLieuDestination(null);
             }
         }
 

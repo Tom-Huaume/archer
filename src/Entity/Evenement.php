@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EvenementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -71,6 +73,34 @@ class Evenement
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photo;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Lieu::class, inversedBy="evenements")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $lieuDestination;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Trajet::class, mappedBy="evenement")
+     */
+    private $trajets;
+
+    /**
+     * @ORM\OneToMany(targetEntity=InscriptionEvenement::class, mappedBy="evenement")
+     */
+    private $inscriptions;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Epreuve::class, mappedBy="evenement")
+     */
+    private $epreuves;
+
+    public function __construct()
+    {
+        $this->trajets = new ArrayCollection();
+        $this->inscriptions = new ArrayCollection();
+        $this->epreuves = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -205,6 +235,108 @@ class Evenement
     public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getLieuDestination(): ?Lieu
+    {
+        return $this->lieuDestination;
+    }
+
+    public function setLieuDestination(?Lieu $lieuDestination): self
+    {
+        $this->lieuDestination = $lieuDestination;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Trajet[]
+     */
+    public function getTrajets(): Collection
+    {
+        return $this->trajets;
+    }
+
+    public function addTrajet(Trajet $trajet): self
+    {
+        if (!$this->trajets->contains($trajet)) {
+            $this->trajets[] = $trajet;
+            $trajet->setEvenement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrajet(Trajet $trajet): self
+    {
+        if ($this->trajets->removeElement($trajet)) {
+            // set the owning side to null (unless already changed)
+            if ($trajet->getEvenement() === $this) {
+                $trajet->setEvenement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|InscriptionEvenement[]
+     */
+    public function getInscriptions(): Collection
+    {
+        return $this->inscriptions;
+    }
+
+    public function addInscription(InscriptionEvenement $inscription): self
+    {
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions[] = $inscription;
+            $inscription->setEvenement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInscription(InscriptionEvenement $inscription): self
+    {
+        if ($this->inscriptions->removeElement($inscription)) {
+            // set the owning side to null (unless already changed)
+            if ($inscription->getEvenement() === $this) {
+                $inscription->setEvenement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Epreuve[]
+     */
+    public function getEpreuves(): Collection
+    {
+        return $this->epreuves;
+    }
+
+    public function addEpreufe(Epreuve $epreufe): self
+    {
+        if (!$this->epreuves->contains($epreufe)) {
+            $this->epreuves[] = $epreufe;
+            $epreufe->setEvenement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEpreufe(Epreuve $epreufe): self
+    {
+        if ($this->epreuves->removeElement($epreufe)) {
+            // set the owning side to null (unless already changed)
+            if ($epreufe->getEvenement() === $this) {
+                $epreufe->setEvenement(null);
+            }
+        }
 
         return $this;
     }

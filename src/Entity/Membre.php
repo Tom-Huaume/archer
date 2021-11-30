@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MembreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -71,6 +73,28 @@ class Membre
      * @ORM\Column(type="string", length=3, nullable=true)
      */
     private $civilite;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Trajet::class, mappedBy="organisateur")
+     */
+    private $trajets;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ReservationTrajet::class, mappedBy="membre")
+     */
+    private $reservationTrajets;
+
+    /**
+     * @ORM\OneToMany(targetEntity=InscriptionEvenement::class, mappedBy="membre")
+     */
+    private $inscriptionEvenements;
+
+    public function __construct()
+    {
+        $this->trajets = new ArrayCollection();
+        $this->reservationTrajets = new ArrayCollection();
+        $this->inscriptionEvenements = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -205,6 +229,96 @@ class Membre
     public function setCivilite(?string $civilite): self
     {
         $this->civilite = $civilite;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Trajet[]
+     */
+    public function getTrajets(): Collection
+    {
+        return $this->trajets;
+    }
+
+    public function addTrajet(Trajet $trajet): self
+    {
+        if (!$this->trajets->contains($trajet)) {
+            $this->trajets[] = $trajet;
+            $trajet->setOrganisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrajet(Trajet $trajet): self
+    {
+        if ($this->trajets->removeElement($trajet)) {
+            // set the owning side to null (unless already changed)
+            if ($trajet->getOrganisateur() === $this) {
+                $trajet->setOrganisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ReservationTrajet[]
+     */
+    public function getReservationTrajets(): Collection
+    {
+        return $this->reservationTrajets;
+    }
+
+    public function addReservationTrajet(ReservationTrajet $reservationTrajet): self
+    {
+        if (!$this->reservationTrajets->contains($reservationTrajet)) {
+            $this->reservationTrajets[] = $reservationTrajet;
+            $reservationTrajet->setMembre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservationTrajet(ReservationTrajet $reservationTrajet): self
+    {
+        if ($this->reservationTrajets->removeElement($reservationTrajet)) {
+            // set the owning side to null (unless already changed)
+            if ($reservationTrajet->getMembre() === $this) {
+                $reservationTrajet->setMembre(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|InscriptionEvenement[]
+     */
+    public function getInscriptionEvenements(): Collection
+    {
+        return $this->inscriptionEvenements;
+    }
+
+    public function addInscriptionEvenement(InscriptionEvenement $inscriptionEvenement): self
+    {
+        if (!$this->inscriptionEvenements->contains($inscriptionEvenement)) {
+            $this->inscriptionEvenements[] = $inscriptionEvenement;
+            $inscriptionEvenement->setMembre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInscriptionEvenement(InscriptionEvenement $inscriptionEvenement): self
+    {
+        if ($this->inscriptionEvenements->removeElement($inscriptionEvenement)) {
+            // set the owning side to null (unless already changed)
+            if ($inscriptionEvenement->getMembre() === $this) {
+                $inscriptionEvenement->setMembre(null);
+            }
+        }
 
         return $this;
     }

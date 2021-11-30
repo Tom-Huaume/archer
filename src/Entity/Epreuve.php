@@ -42,6 +42,17 @@ class Epreuve
      */
     private $dateHeureCreation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="epreuves")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $evenement;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Arme::class, inversedBy="epreuves")
+     */
+    private $arme;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +114,30 @@ class Epreuve
     public function setDateHeureCreation(\DateTimeInterface $dateHeureCreation): self
     {
         $this->dateHeureCreation = $dateHeureCreation;
+
+        return $this;
+    }
+
+    public function getEvenement(): ?Evenement
+    {
+        return $this->evenement;
+    }
+
+    public function setEvenement(?Evenement $evenement): self
+    {
+        $this->evenement = $evenement;
+
+        return $this;
+    }
+
+    public function getArme(): ?Arme
+    {
+        return $this->arme;
+    }
+
+    public function setArme(?Arme $arme): self
+    {
+        $this->arme = $arme;
 
         return $this;
     }

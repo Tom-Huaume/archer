@@ -27,6 +27,18 @@ class ReservationTrajet
      */
     private $dateHeureDemande;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Trajet::class, inversedBy="reservations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $trajet;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Membre::class, inversedBy="reservationTrajets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $membre;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +64,30 @@ class ReservationTrajet
     public function setDateHeureDemande(\DateTimeInterface $dateHeureDemande): self
     {
         $this->dateHeureDemande = $dateHeureDemande;
+
+        return $this;
+    }
+
+    public function getTrajet(): ?Trajet
+    {
+        return $this->trajet;
+    }
+
+    public function setTrajet(?Trajet $trajet): self
+    {
+        $this->trajet = $trajet;
+
+        return $this;
+    }
+
+    public function getMembre(): ?Membre
+    {
+        return $this->membre;
+    }
+
+    public function setMembre(?Membre $membre): self
+    {
+        $this->membre = $membre;
 
         return $this;
     }

@@ -27,6 +27,18 @@ class InscriptionEvenement
      */
     private $dateHeureInscription;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Membre::class, inversedBy="inscriptionEvenements")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $membre;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="inscriptions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $evenement;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +64,30 @@ class InscriptionEvenement
     public function setDateHeureInscription(\DateTimeInterface $dateHeureInscription): self
     {
         $this->dateHeureInscription = $dateHeureInscription;
+
+        return $this;
+    }
+
+    public function getMembre(): ?Membre
+    {
+        return $this->membre;
+    }
+
+    public function setMembre(?Membre $membre): self
+    {
+        $this->membre = $membre;
+
+        return $this;
+    }
+
+    public function getEvenement(): ?Evenement
+    {
+        return $this->evenement;
+    }
+
+    public function setEvenement(?Evenement $evenement): self
+    {
+        $this->evenement = $evenement;
 
         return $this;
     }

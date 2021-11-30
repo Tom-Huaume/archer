@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArmeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,16 @@ class Arme
      * @ORM\Column(type="string", length=50)
      */
     private $designation;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Epreuve::class, mappedBy="arme")
+     */
+    private $epreuves;
+
+    public function __construct()
+    {
+        $this->epreuves = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -52,6 +64,36 @@ class Arme
     public function setDesignation(?string $designation): self
     {
         $this->designation = $designation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Epreuve[]
+     */
+    public function getEpreuves(): Collection
+    {
+        return $this->epreuves;
+    }
+
+    public function addEpreufe(Epreuve $epreufe): self
+    {
+        if (!$this->epreuves->contains($epreufe)) {
+            $this->epreuves[] = $epreufe;
+            $epreufe->setArme($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEpreufe(Epreuve $epreufe): self
+    {
+        if ($this->epreuves->removeElement($epreufe)) {
+            // set the owning side to null (unless already changed)
+            if ($epreufe->getArme() === $this) {
+                $epreufe->setArme(null);
+            }
+        }
 
         return $this;
     }
