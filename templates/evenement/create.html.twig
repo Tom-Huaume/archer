@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Evenement | {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <h2>Evènements</h2>
+
+    {{ form_start(evenementForm) }}
+
+    {{ form_widget(evenementForm) }}
+
+    {{ form_end(evenementForm) }}
+
+{% endblock %}
