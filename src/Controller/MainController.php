@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\EvenementRepository;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
@@ -9,15 +10,12 @@ class MainController extends \Symfony\Bundle\FrameworkBundle\Controller\Abstract
     /**
      * @Route("/", name="main_home")
      */
-    public function home()
+    public function home(EvenementRepository $evenementRepository)
     {
-        $eventTest1 = [
-            "nom" => "Menhir cup",
-            "concours" => 0,
-        ];
+        $evenements = $evenementRepository->findAll();
 
         return $this->render('main/home.html.twig', [
-            "ev1" => $eventTest1
+            "evenements" => $evenements
         ]);
     }
 

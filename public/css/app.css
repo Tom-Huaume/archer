@@ -21,7 +21,37 @@ legend {
     margin-top: 2rem;
 }
 
+footer{
+    margin-top: 10rem;
+    padding-top: 8rem;
+    padding-bottom: 5rem;
+}
+
 /*_________CLASSES_________*/
+/*____liens____*/
+.disable-link{
+    text-decoration: none;
+}
+
+/*____navigation____*/
+.offset-left{
+    padding-left: 5rem;
+}
+
+/*____footer____*/
+.footer-mentions{
+    text-align: center;
+}
+
+/*____images____*/
+.logo-titre{
+    height: 150px;
+}
+
+.logo-small{
+    height: 120px;
+}
+
 /*____Tableau listing armes____*/
 .my-custom-scrollbar-arme {
     position:relative;
@@ -59,6 +89,36 @@ legend {
 
 .input-ville-lieu {
     max-width: 25rem;
+}
+
+/*____Formulaire Evenements____*/
+.input-nom-event {
+    max-width: 35rem;
+}
+
+.input-desc-event {
+    max-width: 37rem;
+    height: 8rem;
+}
+
+.input-duree-event {
+    max-width: 7rem;
+}
+
+.input-inscr-event {
+    max-width: 5rem;
+}
+
+.input-etat-event {
+    max-width: 10rem;
+}
+
+.input-prix-event {
+    max-width: 10rem;
+}
+
+.input-lieu-event {
+    max-width: 30rem;
 }
 
 /*____Messages flash____*/

@@ -5,14 +5,8 @@
 {% endblock %}
 
 {% block body %}
-    <h2>Evènements à venir</h2>
-    <table>
-        <tr>A</tr>
-        <tr>A</tr>
+    <h3>Evènements à venir</h3>
 
-        <td>{{ ev1.nom }}</td>
-        <td>b</td>
-    </table>
 
     {# ----Tableau des évènements----  #}
     <table class="table table-hover">
@@ -42,18 +36,45 @@
         </tbody>
     </table>
 
-    {# ----Liste des évènements passés---- #}
-    {% set article = {
-        titre: "Concours salle 18 et 19 décembre 2021",
-        photo: "photo1.jpg",
-        desc: "abla bla bla"
-    } %}
 
-    <h2>{{ article.titre | upper }}</h2>
+    <br><br>
 
-    {% for key, val in article %}
-        <div>{{ key }} : {{ val }} </div>
+    {% for e in evenements %}
+    <a href="#" style="text-decoration: none;">
+        <div class="card text-white bg-primary mb-3" style="max-width: 90rem;">
+            <div class="card-header">{{ e.lieuDestination.nom }}</div>
+            <div class="card-body">
+                <h4 class="card-title">{{ e.nom }}</h4>
+                <p class="card-text">{{ e.description | nl2br }}</p>
+            </div>
+        </div>
+    </a>
     {% endfor %}
+
+    {% for e in evenements %}
+    <a href="#" style="text-decoration: none;">
+        <div class="card text-white bg-success mb-3" style="max-width: 90rem;">
+            <div class="card-header">{{ e.lieuDestination.nom }}</div>
+            <div class="card-body">
+                <h4 class="card-title">{{ e.nom }}</h4>
+                <p class="card-text">{{ e.description | nl2br }}</p>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+
+    {% for e in evenements %}
+    <a href="#" style="text-decoration: none;">
+        <div class="card border-success mb-3" style="max-width: 90rem;">
+            <div class="card-header">{{ e.lieuDestination.nom }}</div>
+            <div class="card-body">
+                <h4 class="card-title">{{ e.nom }}</h4>
+                <p class="card-text">{{ e.description | nl2br }}</p>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+
 
 {% endblock %}
 

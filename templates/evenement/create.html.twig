@@ -9,9 +9,86 @@
     <h2>Evènements</h2>
 
     {{ form_start(evenementForm) }}
+    <div class="form-group">
+        {{ form_label(evenementForm.nom) }}
+        {{ form_widget(evenementForm.nom) }}
+        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.nom) }}</small>
+    </div>
 
-    {{ form_widget(evenementForm) }}
+    <div class="form-group">
+        {{ form_label(evenementForm.description) }}
+        {{ form_widget(evenementForm.description) }}
+        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.description) }}</small>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(evenementForm.dateHeureDebut) }}
+        {{ form_widget(evenementForm.dateHeureDebut) }}
+        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.dateHeureDebut) }}</small>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(evenementForm.duree) }}
+        {{ form_widget(evenementForm.duree) }}
+        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.duree) }}</small>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(evenementForm.dateHeureLimiteInscription) }}
+        {{ form_widget(evenementForm.dateHeureLimiteInscription) }}
+        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.dateHeureLimiteInscription) }}</small>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(evenementForm.nbInscriptionMax) }}
+        {{ form_widget(evenementForm.nbInscriptionMax) }}
+        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.nbInscriptionMax) }}</small>
+    </div>
+
+{#    <div class="form-group">#}
+{#        {{ form_label(evenementForm.etat) }}#}
+{#        {{ form_widget(evenementForm.etat) }}#}
+{#        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.etat) }}</small>#}
+{#    </div>#}
+
+    <div class="form-group">
+        {{ form_label(evenementForm.prix) }}
+        {{ form_widget(evenementForm.prix) }}
+        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.prix) }}</small>
+    </div>
+
+
+    <div class="form-check form-switch">
+        {{ form_label(evenementForm.concours) }}
+        {{ form_widget(evenementForm.concours) }}
+        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.concours) }}</small>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(evenementForm.dateHeureCreation) }}
+        {{ form_widget(evenementForm.dateHeureCreation) }}
+        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.dateHeureCreation) }}</small>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(evenementForm.photo) }}
+        {{ form_widget(evenementForm.photo) }}
+        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.photo) }}</small>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(evenementForm.lieuDestination) }}
+        {{ form_widget(evenementForm.lieuDestination) }}
+        <small id="emailHelp" class="form-text text-muted">{{ form_errors(evenementForm.lieuDestination) }}</small>
+    </div>
+
+
+    <button class="btn btn-primary">Créer</button>
 
     {{ form_end(evenementForm) }}
+
+
+
+
 
 {% endblock %}
